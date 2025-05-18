@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GabeSMP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Press+Start+2P&family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    header {
+      padding: 2rem;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: #000;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: #00cc00;
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      background-color: #111;
+      border-radius: 15px;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .ip-block {
+      background: #111;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .ip-text {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .ip-text span {
+      font-size: 1rem;
+    }
+
+    button {
+      background: #00aa00;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #00cc00;
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    audio {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 1rem;
+        padding: 1rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>🎮 GabeSMP - Servidor Minecraft</header>
+
+  <nav>
+    <a href="#info" onclick="showTab('info')">Informações</a>
+    <a href="#comandos" onclick="showTab('comandos')">Comandos</a>
+  </nav>
+
+  <div id="info" class="container tab">
+    <div class="section">
+      <h2>Java Edition (v1.21.5)</h2>
+      <div class="ip-block">
+        <div class="ip-text">
+          <span><strong>IP:</strong> with-id.eu.joinmc.link</span>
+          <button onclick="copyToClipboard('with-id.eu.joinmc.link')">Copiar</button>
+        </div>
+        <div class="ip-text">
+          <span><strong>IP Alternativo:</strong> 16.ip.eu.ply.gg:2250</span>
+          <button onclick="copyToClipboard('16.ip.eu.ply.gg:2250')">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Bedrock Edition (v1.21.81)</h2>
+      <div class="ip-block">
+        <div class="ip-text">
+          <span><strong>IP:</strong> cur-iis.with.playit.plus</span>
+          <button onclick="copyToClipboard('cur-iis.with.playit.plus')">Copiar</button>
+        </div>
+        <div class="ip-text">
+          <span><strong>Porta:</strong> 1420</span>
+          <button onclick="copyToClipboard('1420')">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🗺️ Mapa Ao Vivo</h2>
+      <iframe src="http://23.ip.gl.ply.gg:14513/"></iframe>
+    </div>
+  </div>
+
+  <div id="comandos" class="container tab hidden">
+    <div class="section">
+      <h2>📜 Comandos Básicos</h2>
+      <p>Escreve os seguintes comandos no chat do servidor para utilizares funcionalidades essenciais:</p>
+      <ul>
+        <li><strong>/home</strong> - Teleporta-te para a tua casa previamente definida com <code>/sethome</code>.</li>
+        <li><strong>/sethome</strong> - Define o local atual como a tua casa. Depois podes voltar com <code>/home</code>.</li>
+        <li><strong>/back</strong> - Leva-te de volta ao local onde morreste ou foste teletransportado pela última vez.</li>
+        <li><strong>/graves</strong> - Acede às tuas sepulturas anteriores (túmulos onde ficam os teus itens após a morte).</li>
+        <li><strong>/tpa &lt;jogador&gt;</strong> - Pede para te teletransportares até outro jogador.</li>
+        <li><strong>/tpaccept</strong> - Aceita um pedido de teletransporte enviado com <code>/tpa</code>.</li>
+        <li><strong>/rtp</strong> - Teletransporta-te aleatoriamente para um local seguro no mundo.</li>
+        <li><strong>/bal</strong> - Mostra o teu saldo atual de dinheiro no servidor.</li>
+        <li><strong>/ah</strong> - Abre o leilão onde podes comprar e vender itens.</li>
+        <li><strong>/ah sell &lt;preço&gt;</strong> - Coloca o item da tua mão à venda no leilão pelo preço indicado.</li>
+        <li><strong>/sell all</strong> - Vende todos os itens vendíveis no teu inventário de uma só vez.</li>
+        <li><strong>/sit</strong> - Faz com que o teu personagem se sente onde estiveres (plugin GSit).</li>
+        <li><strong>/ec</strong> - Abre o teu ender chest em qualquer lugar.</li>
+        <li><strong>/spawn</strong> - Teleporta-te para o ponto de nascimento do servidor (plugin EssentialsX).</li>
+        <li><strong>/msg &lt;jogador&gt; &lt;mensagem&gt;</strong> - Envia uma mensagem privada a outro jogador.</li>
+        <li><strong>/pay &lt;jogador&gt; &lt;quantia&gt;</strong> - Envia dinheiro para outro jogador (plugin Vault).</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copiado: ' + text);
+      });
+    }
+
+    function showTab(tabId) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
