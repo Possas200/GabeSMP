@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GabeSMP</title>
+  <title>SoulAlters</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Press+Start+2P&family=Poppins:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -30,7 +30,7 @@
     }
 
     nav a {
-      color: #00cc00;
+      color: #8000ff;
       text-decoration: none;
       font-family: 'Poppins', sans-serif;
       font-size: 1.2rem;
@@ -74,7 +74,7 @@
     }
 
     button {
-      background: #00aa00;
+      background: #6600cc;
       color: #fff;
       border: none;
       padding: 0.5rem 1rem;
@@ -84,7 +84,7 @@
     }
 
     button:hover {
-      background: #00cc00;
+      background: #8000ff;
     }
 
     iframe {
@@ -112,7 +112,7 @@
     }
 
     li strong {
-      color: #00cc00;
+      color: #8000ff;
     }
 
     @media (max-width: 600px) {
@@ -133,13 +133,12 @@
   </style>
 </head>
 <body>
-  
 
-  <header>🎮 GabeSMP - Servidor Minecraft</header>
+  <header>🎮 SoulAlters - Minecraft Server</header>
 
   <nav>
-    <a href="#info" onclick="showTab('info')">Informações</a>
-    <a href="#comandos" onclick="showTab('comandos')">Comandos</a>
+    <a href="#info" onclick="showTab('info')">Information</a>
+    <a href="#comandos" onclick="showTab('comandos')">Commands</a>
   </nav>
 
   <div id="info" class="container tab">
@@ -148,11 +147,11 @@
       <div class="ip-block">
         <div class="ip-text">
           <span><strong>IP:</strong> with-id.eu.joinmc.link</span>
-          <button onclick="copyToClipboard('with-id.eu.joinmc.link')">Copiar</button>
+          <button onclick="copyToClipboard('with-id.eu.joinmc.link')">Copy</button>
         </div>
         <div class="ip-text">
-          <span><strong>IP Alternativo:</strong> 16.ip.eu.ply.gg:2250</span>
-          <button onclick="copyToClipboard('16.ip.eu.ply.gg:2250')">Copiar</button>
+          <span><strong>Alternative IP:</strong> 16.ip.eu.ply.gg:2250</span>
+          <button onclick="copyToClipboard('16.ip.eu.ply.gg:2250')">Copy</button>
         </div>
       </div>
     </div>
@@ -162,50 +161,50 @@
       <div class="ip-block">
         <div class="ip-text">
           <span><strong>IP:</strong> cur-iis.with.playit.plus</span>
-          <button onclick="copyToClipboard('cur-iis.with.playit.plus')">Copiar</button>
+          <button onclick="copyToClipboard('cur-iis.with.playit.plus')">Copy</button>
         </div>
         <div class="ip-text">
-          <span><strong>Porta:</strong> 1420</span>
-          <button onclick="copyToClipboard('1420')">Copiar</button>
+          <span><strong>Port:</strong> 1420</span>
+          <button onclick="copyToClipboard('1420')">Copy</button>
         </div>
       </div>
     </div>
 
     <div class="section">
-      <h2>🗺️ Mapa Ao Vivo</h2>
-      <p>Podes ver o mapa ao vivo do servidor clicando no botão abaixo:</p>
-	  <button onclick="window.open('http://23.ip.gl.ply.gg:14513/', '_blank')">Abrir Mapa</button>
+      <h2>🗺️ Live Map</h2>
+      <p>You can view the server's live map by clicking the button below:</p>
+      <button onclick="window.open('http://23.ip.gl.ply.gg:14513/', '_blank')">Open Map</button>
     </div>
   </div>
 
   <div id="comandos" class="container tab hidden">
     <div class="section">
-      <h2>📜 Comandos Básicos</h2>
+      <h2>📜 Basic Commands</h2>
       <ul>
-        <li><strong>/home</strong> — Teleporta-te para a tua casa. Necessário usar <code>/sethome</code> antes.</li>
-        <li><strong>/sethome</strong> — Define o local onde estás como tua casa. Podes usar <code>/home</code> depois.</li>
-        <li><strong>/back</strong> — Volta ao local onde estiveste antes (ex: local da morte).</li>
-        <li><strong>/graves</strong> — Mostra as tuas últimas tumbas (onde morreste).</li>
-        <li><strong>/tpa [jogador]</strong> — Pede teletransporte até outro jogador.</li>
-        <li><strong>/tpaccept</strong> — Aceita um pedido de teletransporte recebido.</li>
-        <li><strong>/rtp</strong> — Teleporta-te para um local aleatório no mundo.</li>
-        <li><strong>/bal</strong> — Vê o teu saldo atual (dinheiro).</li>
-        <li><strong>/pay [jogador] [quantia]</strong> — Envia dinheiro para outro jogador.</li>
-        <li><strong>/ah</strong> — Abre a casa de leilões para comprar ou vender itens.</li>
-        <li><strong>/ah sell [preço]</strong> — Coloca o item da tua mão à venda na casa de leilões.</li>
-        <li><strong>/sell all</strong> — Vende todos os itens vendíveis do teu inventário automaticamente.</li>
-        <li><strong>/sit</strong> — Faz o teu personagem sentar.</li>
-        <li><strong>/lay</strong> — Faz o teu personagem deitar.</li>
-        <li><strong>/ec</strong> — Abre o teu baú do Ender (ender chest).</li>
+        <li><strong>/home</strong> — Teleport to your home. You must set it first with <code>/sethome</code>.</li>
+        <li><strong>/sethome</strong> — Set your current location as your home.</li>
+        <li><strong>/back</strong> — Return to your previous location (e.g., death spot).</li>
+        <li><strong>/graves</strong> — Show your last graves (where you died).</li>
+        <li><strong>/tpa [player]</strong> — Request teleport to another player.</li>
+        <li><strong>/tpaccept</strong> — Accept a teleport request.</li>
+        <li><strong>/rtp</strong> — Random teleport to a location in the world.</li>
+        <li><strong>/bal</strong> — Check your current balance.</li>
+        <li><strong>/pay [player] [amount]</strong> — Send money to another player.</li>
+        <li><strong>/ah</strong> — Open the auction house to buy or sell items.</li>
+        <li><strong>/ah sell [price]</strong> — Sell the item in your hand on the auction house.</li>
+        <li><strong>/sell all</strong> — Automatically sell all sellable items in your inventory.</li>
+        <li><strong>/sit</strong> — Make your character sit down.</li>
+        <li><strong>/lay</strong> — Make your character lie down.</li>
+        <li><strong>/ec</strong> — Open your Ender Chest.</li>
       </ul>
-      <p>📌 Escreve os comandos diretamente no chat com a barra <code>/</code>, por exemplo: <code>/home</code></p>
+      <p>📌 Type the commands directly into chat with the slash <code>/</code>, e.g., <code>/home</code></p>
     </div>
   </div>
 
   <script>
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
-        alert('Copiado: ' + text);
+        alert('Copied: ' + text);
       });
     }
 
