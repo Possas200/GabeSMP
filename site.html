@@ -1,249 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SoulAlters</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Press+Start+2P&family=Poppins:wght@600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      color: #fff;
-      font-family: 'Roboto', sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoulAlters - Minecraft Server</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Press+Start+2P&family=Poppins:wght@600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    header {
-      padding: 2rem;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 1.5rem;
-      text-align: center;
-    }
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #0f0c29);
+    background-size: 400% 400%;
+    animation: gradientBG 25s ease infinite;
+    color: #fff;
+    min-height: 100vh;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      background: #000;
-      padding: 1rem;
-    }
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-    nav a {
-      color: #8000ff;
-      text-decoration: none;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
+  header {
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    padding: 2rem 1rem;
+    color: #ff80ff;
+    text-shadow: 0 0 5px #ff80ff, 0 0 10px #ff00ff;
+    z-index: 10;
+  }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(5px);
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 10;
+  }
 
-    .container {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-      background-color: #111;
-      border-radius: 15px;
-    }
+  nav a {
+    color: #ff80ff;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
 
-    .section {
-      margin-bottom: 2rem;
-    }
+  nav a:hover {
+    background: #8000ff22;
+    box-shadow: 0 0 8px #ff80ff;
+  }
 
-    .ip-block {
-      background: #111;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
+  .container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    z-index: 1;
+    position: relative;
+  }
 
-    .ip-text {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
+  .card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    perspective: 1000px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
 
-    .ip-text span {
-      font-size: 1rem;
-    }
+  .card:hover {
+    transform: rotateY(6deg) rotateX(3deg);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.7);
+  }
 
-    button {
-      background: #6600cc;
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+  h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.2rem;
+    color: #ff80ff;
+    text-shadow: 0 0 2px #ff80ff, 0 0 5px #ff00ff;
+    margin-bottom: 1rem;
+  }
 
-    button:hover {
-      background: #8000ff;
-    }
+  .ip-block { display: flex; flex-direction: column; gap: 1rem; }
 
-    .discord-button {
-      background-color: #5865F2;
-      color: white;
-      display: inline-flex;
-      align-items: center;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      gap: 0.5rem;
-    }
+  .ip-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
 
-    .discord-button:hover {
-      background-color: #4752c4;
-    }
+  .ip-text:hover { background: rgba(255,255,255,0.2); }
+  .ip-text span { font-size: 1rem; word-break: break-word; }
 
-    .discord-icon {
-      width: 1.2rem;
-      height: 1.2rem;
-    }
+  button {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background: linear-gradient(90deg, #6600cc, #8000ff);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
 
-    iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
-      border-radius: 10px;
-    }
+  button:hover {
+    background: linear-gradient(90deg, #8000ff, #ff80ff);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(128,0,255,0.5);
+  }
 
-    .hidden {
-      display: none;
-    }
+  .discord-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #5865F2;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 10px;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    transition: all 0.3s ease;
+  }
 
-    audio {
-      display: none;
-    }
+  .discord-button:hover {
+    background: #4752c4;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.4);
+  }
 
-    ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
+  .discord-icon { width: 1.5rem; height: 1.5rem; }
 
-    li {
-      margin-bottom: 1rem;
-    }
+  iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+  }
 
-    li strong {
-      color: #8000ff;
-    }
+  ul { list-style-type: none; padding-left: 0; }
+  li { margin-bottom: 1rem; font-size: 0.95rem; }
+  li strong { color: #ff80ff; }
 
-    @media (max-width: 600px) {
-      header {
-        font-size: 1rem;
-        padding: 1rem;
-      }
+  .tab { display: none; }
+  .tab.active { display: block; }
 
-      nav {
-        flex-direction: column;
-        align-items: center;
-      }
+  @media (max-width: 768px) {
+    nav { flex-direction: column; }
+    .ip-text { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  }
 
-      .container {
-        padding: 1rem;
-      }
-    }
-  </style>
+  /* Toast notification */
+  #toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: rgba(128,0,255,0.85);
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  #toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
 </head>
 <body>
 
-  <header>🎮 SoulAlters - Minecraft Server</header>
+<header>🎮 SoulAlters - Minecraft Server</header>
 
-  <nav>
-    <a href="#info" onclick="showTab('info')">Information</a>
-    <a href="#comandos" onclick="showTab('comandos')">Commands</a>
-  </nav>
+<nav>
+  <a href="#info" onclick="showTab('info')">Information</a>
+  <a href="#comandos" onclick="showTab('comandos')">Commands</a>
+</nav>
 
-  <div id="info" class="container tab">
-    <div class="section">
-      <h2>Java Edition (v1.21.6)</h2>
+<div class="container">
+  <div id="info" class="tab active">
+    <div class="card">
+      <h2>🟪 Java Edition (v1.21.6)</h2>
       <div class="ip-block">
         <div class="ip-text">
-          <span><strong>IP:</strong> with-id.eu.joinmc.link</span>
-          <button onclick="copyToClipboard('with-id.eu.joinmc.link')">Copy</button>
+          <span><strong>IP:</strong> since-riders.gl.joinmc.link</span>
+          <button onclick="copyWithToast('since-riders.gl.joinmc.link')">Copy</button>
         </div>
         <div class="ip-text">
-          <span><strong>Alternative IP:</strong> 16.ip.eu.ply.gg:2250</span>
-          <button onclick="copyToClipboard('16.ip.eu.ply.gg:2250')">Copy</button>
+          <span><strong>Alternative IP:</strong> 31.ip.gl.ply.gg:20083</span>
+          <button onclick="copyWithToast('31.ip.gl.ply.gg:20083')">Copy</button>
         </div>
       </div>
     </div>
 
-    <div class="section">
-      <h2>Bedrock Edition (v1.21.92)</h2>
+    <div class="card">
+      <h2>🟩 Bedrock Edition (v1.21.92)</h2>
       <div class="ip-block">
         <div class="ip-text">
-          <span><strong>IP:</strong> cur-iis.with.playit.plus</span>
-          <button onclick="copyToClipboard('cur-iis.with.playit.plus')">Copy</button>
+          <span><strong>IP:</strong> within-const.gl.at.ply.gg</span>
+          <button onclick="copyWithToast('within-const.gl.at.ply.gg')">Copy</button>
         </div>
         <div class="ip-text">
-          <span><strong>Port:</strong> 1420</span>
-          <button onclick="copyToClipboard('1420')">Copy</button>
+          <span><strong>Port:</strong> 3063</span>
+          <button onclick="copyWithToast('3063')">Copy</button>
         </div>
       </div>
     </div>
 
-    <div class="section">
+    <div class="card">
       <h2>🗺️ Live Map</h2>
-      <p>You can view the server's live map by clicking the button below:</p>
-      <button onclick="window.open('http://23.ip.gl.ply.gg:14513/', '_blank')">Open Map</button>
+      <iframe src="https://tinyurl.com/yrjdhujy"></iframe>
     </div>
 
-    <div class="section">
-      <h2>💬 CypherCats Discord</h2>
-      <p>Junta-te à comunidade CypherCats no nosso servidor oficial de Discord:</p>
-      <button class="discord-button" onclick="window.open('https://discord.gg/qd2eQWtdpq', '_blank')">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="Discord" class="discord-icon" />
-        Entrar no Discord
+    <div class="card">
+      <h2>💬 SoulAlters Discord</h2>
+      <button class="discord-button" onclick="window.open('https://discord.gg/FjvSKmh6Qf','_blank')">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="Discord" class="discord-icon"/>
+        Join Discord
       </button>
     </div>
   </div>
 
-  <div id="comandos" class="container tab hidden">
-    <div class="section">
+  <div id="comandos" class="tab">
+    <div class="card">
       <h2>📜 Basic Commands</h2>
       <ul>
-        <li><strong>/home</strong> — Teleport to your home. You must set it first with <code>/sethome</code>.</li>
-        <li><strong>/sethome</strong> — Set your current location as your home.</li>
-        <li><strong>/back</strong> — Return to your previous location (e.g., death spot).</li>
-        <li><strong>/graves</strong> — Show your last graves (where you died).</li>
+        <li><strong>/home</strong> — Teleport to your home. Must set first with <code>/sethome</code>.</li>
+        <li><strong>/sethome</strong> — Set your current location as home.</li>
+        <li><strong>/back</strong> — Return to previous location.</li>
+        <li><strong>/graves</strong> — Show last graves.</li>
         <li><strong>/tpa [player]</strong> — Request teleport to another player.</li>
-        <li><strong>/tpaccept</strong> — Accept a teleport request.</li>
-        <li><strong>/rtp</strong> — Random teleport to a location in the world.</li>
-        <li><strong>/bal</strong> — Check your current balance.</li>
-        <li><strong>/pay [player] [amount]</strong> — Send money to another player.</li>
-        <li><strong>/ah</strong> — Open the auction house to buy or sell items.</li>
-        <li><strong>/ah sell [price]</strong> — Sell the item in your hand on the auction house.</li>
-        <li><strong>/sell all</strong> — Automatically sell all sellable items in your inventory.</li>
-        <li><strong>/sit</strong> — Make your character sit down.</li>
-        <li><strong>/lay</strong> — Make your character lie down.</li>
-        <li><strong>/ec</strong> — Open your Ender Chest.</li>
+        <li><strong>/tpaccept</strong> — Accept teleport request.</li>
+        <li><strong>/rtp</strong> — Random teleport.</li>
+        <li><strong>/bal</strong> — Check balance.</li>
+        <li><strong>/pay [player] [amount]</strong> — Send money.</li>
+        <li><strong>/ah</strong> — Open auction house.</li>
+        <li><strong>/ah sell [price]</strong> — Sell item in hand.</li>
+        <li><strong>/sell all</strong> — Sell all items.</li>
+        <li><strong>/sit</strong> — Sit.</li>
+        <li><strong>/lay</strong> — Lie down.</li>
+        <li><strong>/ec</strong> — Open Ender Chest.</li>
       </ul>
-      <p>📌 Type the commands directly into chat with the slash <code>/</code>, e.g., <code>/home</code></p>
+      <p>Use <code>/</code> before each command, e.g., <code>/home</code></p>
     </div>
   </div>
+</div>
 
-  <script>
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Copied: ' + text);
-      });
-    }
+<div id="toast"></div>
 
-    function showTab(tabId) {
-      document.querySelectorAll('.tab').forEach(tab => tab.classList.add('hidden'));
-      document.getElementById(tabId).classList.remove('hidden');
-    }
-  </script>
+<script>
+function showTab(tabId){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+}
+
+function copyWithToast(text){
+  navigator.clipboard.writeText(text).then(()=>{
+    const toast = document.getElementById('toast');
+    toast.textContent = `Copied: ${text}`;
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'), 2000);
+  });
+}
+</script>
+
 </body>
 </html>
