@@ -30,9 +30,7 @@
     font-family: 'Press Start 2P', monospace;
     font-size: 2rem;
     padding: 2rem 1rem;
-    color: #ff80ff;
-    text-shadow: 0 0 5px #ff80ff, 0 0 10px #ff00ff;
-    z-index: 10;
+    color: #d1b3ff;
   }
 
   nav {
@@ -40,7 +38,7 @@
     justify-content: center;
     gap: 1rem;
     padding: 1rem;
-    background: rgba(0,0,0,0.65);
+    background: rgba(20,20,40,0.85);
     backdrop-filter: blur(5px);
     flex-wrap: wrap;
     position: relative;
@@ -48,7 +46,7 @@
   }
 
   nav a {
-    color: #ff80ff;
+    color: #d1b3ff;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -58,9 +56,8 @@
     transition: all 0.3s ease;
   }
 
-  nav a:hover {
-    background: #8000ff22;
-    box-shadow: 0 0 8px #ff80ff;
+  nav a:hover, nav a.active {
+    background: rgba(128,0,255,0.2);
   }
 
   .container {
@@ -76,23 +73,21 @@
     border-radius: 15px;
     padding: 2rem 1.5rem;
     margin-bottom: 2rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    perspective: 1000px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     z-index: 1;
   }
 
   .card:hover {
-    transform: rotateY(6deg) rotateX(3deg);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.7);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
   }
 
   h2 {
     font-family: 'Press Start 2P', monospace;
     font-size: 1.2rem;
-    color: #ff80ff;
-    text-shadow: 0 0 2px #ff80ff, 0 0 5px #ff00ff;
+    color: #d1b3ff;
     margin-bottom: 1rem;
   }
 
@@ -106,18 +101,13 @@
     padding: 1rem;
     border-radius: 10px;
     transition: background 0.3s ease;
-    position: relative;
-    overflow: hidden;
   }
 
   .ip-text:hover { background: rgba(255,255,255,0.2); }
   .ip-text span { font-size: 1rem; word-break: break-word; }
 
   button {
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    background: linear-gradient(90deg, #6600cc, #8000ff);
+    background: linear-gradient(90deg, #5a3d9b, #7a4ccf);
     color: #fff;
     border: none;
     padding: 0.6rem 1.2rem;
@@ -128,9 +118,8 @@
   }
 
   button:hover {
-    background: linear-gradient(90deg, #8000ff, #ff80ff);
+    background: linear-gradient(90deg, #7a4ccf, #9f7dff);
     transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(128,0,255,0.5);
   }
 
   .discord-button {
@@ -149,12 +138,11 @@
   .discord-button:hover {
     background: #4752c4;
     transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(0,0,0,0.4);
   }
 
   ul { list-style-type: none; padding-left: 0; }
   li { margin-bottom: 1rem; font-size: 0.95rem; }
-  li strong { color: #ff80ff; }
+  li strong { color: #d1b3ff; }
 
   .tab { display: none; }
   .tab.active { display: block; }
@@ -193,14 +181,14 @@
 <header>🎮 SoulAlters - Minecraft Server</header>
 
 <nav>
-  <a href="#info" onclick="showTab('info')">Information</a>
-  <a href="#comandos" onclick="showTab('comandos')">Commands</a>
+  <a href="#info" class="active" onclick="showTab(event, 'info')">Information</a>
+  <a href="#comandos" onclick="showTab(event, 'comandos')">Commands</a>
 </nav>
 
 <div class="container">
   <div id="info" class="tab active">
     <div class="card">
-      <h2>🟪 Java Edition (v1.21.6)</h2>
+      <h2>🟪 Java Edition (v1.21.8)</h2>
       <div class="ip-block">
         <div class="ip-text">
           <span><strong>IP:</strong> since-riders.gl.joinmc.link</span>
@@ -214,7 +202,7 @@
     </div>
 
     <div class="card">
-      <h2>🟩 Bedrock Edition (v1.21.92)</h2>
+      <h2>🟩 Bedrock Edition (v1.21.100)</h2>
       <div class="ip-block">
         <div class="ip-text">
           <span><strong>IP:</strong> within-const.gl.at.ply.gg</span>
@@ -259,4 +247,32 @@
         <li><strong>/sit</strong> — Sit.</li>
         <li><strong>/lay</strong> — Lie down.</li>
         <li><strong>/ec</strong> — Open Ender Chest.</li>
-      </ul
+      </ul>
+      <p>Use <code>/</code> before each command, e.g., <code>/home</code></p>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+function showTab(event, tabId){
+  event.preventDefault();
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function copyWithToast(text){
+  navigator.clipboard.writeText(text).then(()=>{
+    const toast = document.getElementById('toast');
+    toast.textContent = `Copied: ${text}`;
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'), 2000);
+  });
+}
+</script>
+
+</body>
+</html>
