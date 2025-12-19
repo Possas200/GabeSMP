@@ -128,4 +128,119 @@
                     <h2 class="text-2xl font-bold text-white mb-2">Explora em 3D com BlueMap</h2>
                     <p class="text-gray-400 text-sm mb-4">Vê o mundo do CypherCats diretamente no teu navegador. Acompanha construções em tempo real.</p>
                     <a href="http://pre-first.gl.at.ply.gg:4076/" target="_blank" class="inline-flex items-center gap-2 text-blue-400 font-bold hover:underline">
-                        Abrir interface
+                        Abrir interface do mapa <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass p-8 group hover:border-purple-500/40 transition-all">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-3 text-purple-400 italic">Java Edition</h3>
+                    <div class="bg-black/30 p-4 rounded-xl flex justify-between items-center mb-4">
+                        <code class="text-sm truncate mr-2 italic">since-riders.gl.joinmc.link</code>
+                        <button onclick="copy('since-riders.gl.joinmc.link')" class="text-purple-400 hover:text-white transition"><i data-lucide="copy" class="w-5 h-5"></i></button>
+                    </div>
+                </div>
+                <div class="glass p-8 group hover:border-green-500/40 transition-all">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-3 text-green-400 italic">Bedrock / Mobile</h3>
+                    <div class="space-y-3">
+                        <div class="bg-black/30 p-3 rounded-xl flex justify-between items-center font-mono">
+                            <span class="text-gray-500 text-[10px]">IP:</span>
+                            <code class="text-sm">within-const.gl.at.ply.gg</code>
+                        </div>
+                        <div class="bg-black/30 p-3 rounded-xl flex justify-between items-center font-mono">
+                            <span class="text-gray-500 text-[10px]">Porta:</span>
+                            <code class="text-sm">3063</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="comandos" class="tab-content space-y-6">
+            <div class="glass p-8">
+                <h2 class="text-2xl font-bold mb-8 text-purple-300 flex items-center gap-3"><i data-lucide="terminal"></i> Comandos do Servidor</h2>
+                <div class="space-y-4">
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <code class="text-lg font-bold text-blue-300">/linkaccount</code>
+                        <p class="text-gray-300 mt-2 text-sm leading-relaxed text-blue-100/70 italic">Sincroniza o teu progresso entre as versões Java e Bedrock.</p>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <code class="text-lg font-bold text-red-300">/grave</code>
+                        <p class="text-gray-300 mt-2 text-sm leading-relaxed text-red-100/70">Acede ao histórico das tuas mortes para recuperar itens ou ver coordenadas.</p>
+                        <div class="mt-3 flex items-center gap-2 text-xs bg-red-950/40 text-red-300 p-2 rounded-lg border border-red-500/20 uppercase font-bold tracking-tighter">
+                            ⚠️ Apenas em situações críticas!
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        <div class="p-3 bg-black/20 rounded-lg border border-white/5 text-center italic text-xs text-purple-400">/rtp</div>
+                        <div class="p-3 bg-black/20 rounded-lg border border-white/5 text-center italic text-xs text-purple-400">/ah</div>
+                        <div class="p-3 bg-black/20 rounded-lg border border-white/5 text-center italic text-xs text-purple-400">/sethome</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 glass px-6 py-3 rounded-full opacity-0 translate-y-10 transition-all duration-300 z-[200] border-purple-500/50">
+        <span id="toast-msg" class="font-bold text-sm text-purple-300 tracking-widest uppercase"></span>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        async function fetchServerStatus() {
+            try {
+                const res = await fetch('https://api.mcstatus.io/v2/status/java/since-riders.gl.joinmc.link');
+                const data = await res.json();
+                const statusIndicator = document.getElementById('status-indicator');
+                const playerCount = document.getElementById('player-count');
+
+                if (data.online) {
+                    statusIndicator.innerHTML = `<span class="status-dot online"></span> ONLINE`;
+                    playerCount.innerText = `${data.players.online} JOGADORES ONLINE`;
+                } else {
+                    statusIndicator.innerHTML = `<span class="status-dot offline"></span> OFFLINE`;
+                    playerCount.innerText = `0 JOGADORES`;
+                }
+            } catch (error) { console.error('Status fetch error'); }
+        }
+
+        fetchServerStatus();
+        setInterval(fetchServerStatus, 30000);
+
+        function closeModal() {
+            const modal = document.getElementById('register-modal');
+            modal.style.opacity = '0';
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+
+        function showTab(tabId, el) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            el.classList.add('active');
+        }
+
+        function copy(text) {
+            navigator.clipboard.writeText(text);
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = "Copiado!";
+            toast.classList.add('opacity-100', 'translate-y-0');
+            setTimeout(() => { toast.classList.remove('opacity-100', 'translate-y-0'); }, 2000);
+        }
+
+        function createSnowflake() {
+            const snow = document.createElement('div');
+            snow.classList.add('snow-particle');
+            snow.style.left = Math.random() * 100 + 'vw';
+            snow.style.opacity = Math.random() * 0.7;
+            snow.style.width = snow.style.height = Math.random() * 4 + 2 + 'px';
+            snow.style.animationDuration = Math.random() * 3 + 4 + 's';
+            document.getElementById('snow-container').appendChild(snow);
+            setTimeout(() => snow.remove(), 7000);
+        }
+        setInterval(createSnowflake, 150);
+    </script>
+</body>
+</html>
