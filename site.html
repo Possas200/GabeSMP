@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CypherCats | 2 Week Phase</title>
     
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="CypherCats">
+    <meta name="apple-mobile-web-app-title" content="CypherCats">
+    <meta name="theme-color" content="#0f0c29">
+    <meta name="msapplication-navbutton-color" content="#0f0c29">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png">
 
@@ -117,13 +125,14 @@
     </header>
 
     <nav class="sticky top-4 z-50 flex justify-center px-4 mb-12">
-        <div class="glass px-4 md:px-6 py-2 flex items-center gap-4 md:gap-8 shadow-2xl">
-            <a href="#" onclick="showTab('info', this)" class="nav-link active py-2 font-semibold flex items-center gap-2 text-sm md:text-base"><i data-lucide="home" class="w-4 h-4"></i> Info</a>
-            <a href="#" onclick="showTab('comandos', this)" class="nav-link py-2 font-semibold flex items-center gap-2 text-sm md:text-base"><i data-lucide="terminal" class="w-4 h-4"></i> Comandos</a>
-            <a href="http://pre-first.gl.at.ply.gg:4076/" target="_blank" class="btn-map px-4 py-2 rounded-xl text-white font-bold flex items-center gap-2 text-sm md:text-base">
+        <div class="glass px-4 md:px-6 py-2 flex items-center gap-3 md:gap-6 shadow-2xl overflow-x-auto whitespace-nowrap max-w-full">
+            <a href="#" onclick="showTab('info', this)" class="nav-link active py-2 font-semibold flex items-center gap-2 text-xs md:text-sm"><i data-lucide="home" class="w-4 h-4"></i> Info</a>
+            <a href="#" onclick="showTab('comandos', this)" class="nav-link py-2 font-semibold flex items-center gap-2 text-xs md:text-sm"><i data-lucide="terminal" class="w-4 h-4"></i> Comandos</a>
+            <a href="#" onclick="showTab('instalar', this)" class="nav-link py-2 font-semibold flex items-center gap-2 text-xs md:text-sm"><i data-lucide="download" class="w-4 h-4"></i> Instalar</a>
+            <a href="#" onclick="showTab('terminal-crafty', this)" class="nav-link py-2 font-semibold flex items-center gap-2 text-xs md:text-sm text-orange-400"><i data-lucide="layout" class="w-4 h-4"></i> Terminal</a>
+            <a href="http://pre-first.gl.at.ply.gg:4076/" target="_blank" class="btn-map px-4 py-2 rounded-xl text-white font-bold flex items-center gap-2 text-xs md:text-sm transition">
                 <i data-lucide="map" class="w-4 h-4"></i> Mapa Vivo
             </a>
-            <a href="https://discord.gg/FjvSKmh6Qf" target="_blank" class="hidden md:flex py-2 font-semibold text-blue-400 items-center gap-2"><i data-lucide="message-circle" class="w-4 h-4"></i> Discord</a>
         </div>
     </nav>
 
@@ -153,13 +162,13 @@
                 <div class="glass p-8 group hover:border-green-500/40 transition-all">
                     <h3 class="text-xl font-bold mb-6 flex items-center gap-3 text-green-400 italic">Bedrock / Mobile</h3>
                     <div class="space-y-3">
-                        <div class="bg-black/30 p-3 rounded-xl flex justify-between items-center">
-                            <span class="text-gray-500 font-bold text-[10px] uppercase">IP</span>
+                        <div class="bg-black/30 p-3 rounded-xl flex justify-between items-center font-mono">
+                            <span class="text-gray-500 text-[10px]">IP</span>
                             <code class="text-sm">within-const.gl.at.ply.gg</code>
                             <button onclick="copy('within-const.gl.at.ply.gg')" class="text-green-500/50 hover:text-green-400 transition"><i data-lucide="copy" class="w-4 h-4"></i></button>
                         </div>
-                        <div class="bg-black/30 p-3 rounded-xl flex justify-between items-center">
-                            <span class="text-gray-500 font-bold text-[10px] uppercase">Porta</span>
+                        <div class="bg-black/30 p-3 rounded-xl flex justify-between items-center font-mono">
+                            <span class="text-gray-500 text-[10px]">PORTA</span>
                             <code class="text-sm">3063</code>
                             <button onclick="copy('3063')" class="text-green-500/50 hover:text-green-400 transition"><i data-lucide="copy" class="w-4 h-4"></i></button>
                         </div>
@@ -183,12 +192,36 @@
                             ⚠️ Apenas em situações críticas!
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        <div class="p-3 bg-black/20 rounded-lg border border-white/5 text-center italic text-xs text-purple-400">/rtp</div>
-                        <div class="p-3 bg-black/20 rounded-lg border border-white/5 text-center italic text-xs text-purple-400">/ah</div>
-                        <div class="p-3 bg-black/20 rounded-lg border border-white/5 text-center italic text-xs text-purple-400">/sethome</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="instalar" class="tab-content space-y-6">
+            <div class="glass p-8 text-center">
+                <h2 class="text-2xl font-bold mb-6 text-blue-300 flex items-center justify-center gap-3"><i data-lucide="download"></i> Instalar Aplicação</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+                        <i data-lucide="monitor" class="w-12 h-12 mx-auto mb-4 text-blue-400"></i>
+                        <h3 class="font-bold mb-4 text-xl">Aplicação PC</h3>
+                        <button onclick="installApp()" class="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition shadow-lg w-full">Instalar no PC</button>
+                    </div>
+                    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+                        <i data-lucide="smartphone" class="w-12 h-12 mx-auto mb-4 text-green-400"></i>
+                        <h3 class="font-bold mb-4 text-xl">Aplicação Mobile</h3>
+                        <button onclick="installApp()" class="px-8 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl transition shadow-lg w-full">Instalar no Telemóvel</button>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div id="terminal-crafty" class="tab-content">
+            <div class="glass p-8 text-center border-orange-500/30">
+                <i data-lucide="layout" class="w-12 h-12 mx-auto mb-4 text-orange-400"></i>
+                <h2 class="text-2xl font-bold mb-4 text-white">Terminal Crafty</h2>
+                <p class="text-gray-400 mb-6">Acesso direto ao painel de controlo e consola do servidor.</p>
+                <a href="https://147.185.221.224:32170/panel/server_detail?id=4b7e33da-dd39-4486-9d88-bb1ad98272d7&subpage=term" target="_blank" class="inline-block px-10 py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl shadow-lg transition transform hover:scale-105">
+                    Abrir Terminal
+                </a>
             </div>
         </div>
     </main>
@@ -198,21 +231,34 @@
     <script>
         lucide.createIcons();
 
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+
+        async function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                await deferredPrompt.userChoice;
+                deferredPrompt = null;
+            } else {
+                alert("O teu navegador já tem a App instalada ou não suporta instalação direta. Usa o menu do navegador e escolhe 'Instalar Aplicação'.");
+            }
+        }
+
         async function fetchServerStatus(isManual = false) {
             const btn = document.getElementById('refresh-btn');
             const icon = btn.querySelector('i');
-            
             if (isManual) {
                 icon.classList.add('spin-animation');
                 setTimeout(() => icon.classList.remove('spin-animation'), 800);
             }
-
             try {
                 const res = await fetch('https://api.mcstatus.io/v2/status/java/since-riders.gl.joinmc.link');
                 const data = await res.json();
                 const statusIndicator = document.getElementById('status-indicator');
                 const playerCount = document.getElementById('player-count');
-
                 if (data.online) {
                     statusIndicator.innerHTML = `<span class="status-dot online"></span> ONLINE`;
                     playerCount.innerText = `${data.players.online} JOGADORES ONLINE`;
@@ -221,7 +267,6 @@
                     playerCount.innerText = `0 JOGADORES`;
                 }
             } catch (error) { 
-                console.error('Status fetch error'); 
                 document.getElementById('status-indicator').innerText = "ERRO DE CONEXÃO";
             }
         }
