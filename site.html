@@ -66,6 +66,10 @@
         }
         .online { background-color: #10b981; box-shadow: 0 0 8px #10b981; }
         .offline { background-color: #ef4444; box-shadow: 0 0 8px #ef4444; }
+        
+        /* Animação de girar para o botão de refresh */
+        .spin-animation { animation: spin 1s linear; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -103,6 +107,9 @@
                 <span id="status-indicator"><span class="status-dot offline"></span> VERIFICANDO...</span>
                 <span class="text-white/20">|</span>
                 <span id="player-count" class="text-purple-300 italic">...</span>
+                <button onclick="fetchServerStatus(true)" id="refresh-btn" class="ml-1 p-1 hover:text-white transition-colors" title="Atualizar Status">
+                    <i data-lucide="refresh-cw" class="w-3 h-3"></i>
+                </button>
             </div>
         </div>
     </header>
@@ -189,7 +196,13 @@
     <script>
         lucide.createIcons();
 
-        async function fetchServerStatus() {
+        async function fetchServerStatus(isManual = false) {
+            const refreshBtn = document.getElementById('refresh-btn');
+            if (isManual) {
+                refreshBtn.querySelector('i').classList.add('spin-animation');
+                setTimeout(() => refreshBtn.querySelector('i').classList.remove('spin-animation'), 1000);
+            }
+
             try {
                 const res = await fetch('https://api.mcstatus.io/v2/status/java/since-riders.gl.joinmc.link');
                 const data = await res.json();
@@ -203,7 +216,10 @@
                     statusIndicator.innerHTML = `<span class="status-dot offline"></span> OFFLINE`;
                     playerCount.innerText = `0 JOGADORES`;
                 }
-            } catch (error) { console.error('Status fetch error'); }
+            } catch (error) { 
+                console.error('Status fetch error'); 
+                document.getElementById('status-indicator').innerText = "ERRO NA API";
+            }
         }
 
         fetchServerStatus();
